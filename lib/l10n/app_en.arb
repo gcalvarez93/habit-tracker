@@ -1,0 +1,123 @@
+{
+  "@@locale": "en",
+  "appName": "Habit Tracker",
+  "navHome": "Home",
+  "navHabits": "Habits",
+  "navStats": "Statistics",
+  "navProfile": "Profile",
+  "loginTitle": "Sign in to continue",
+  "loginEmail": "Email",
+  "loginPassword": "Password",
+  "loginButton": "Sign in",
+  "loginWithGoogle": "Continue with Google",
+  "loginNoAccount": "Don't have an account?",
+  "loginRegister": "Register",
+  "registerTitle": "Create account",
+  "registerName": "Name",
+  "registerButton": "Register",
+  "validationRequired": "This field is required",
+  "validationEmail": "Invalid email",
+  "validationPasswordLength": "Minimum 6 characters",
+  "logout": "Sign out",
+  "save": "Save",
+  "saveChanges": "Save changes",
+  "greeting": "Hello, {name} 👋",
+  "todaySummary": "Today's summary",
+  "habits": "Habits",
+  "addHabit": "Add habit",
+  "noHabits": "No habits yet",
+  "habitName": "Habit name",
+  "habitDescription": "Description",
+  "habitFrequency": "Frequency",
+  "habitDeleted": "Habit deleted",
+  "habitCreated": "Habit created successfully",
+  "habitCompleted": "Habit completed",
+  "habitUpdated": "Habit updated successfully",
+  "streak": "Streak",
+  "streakDays": "{days} days",
+  "completedToday": "Completed today",
+  "frequency": "Frequency",
+  "daily": "Daily",
+  "weekly": "Weekly",
+  "stats": "Statistics",
+  "completionRate": "Completion rate",
+  "bestStreak": "Best streak",
+  "totalCompleted": "Total completed",
+  "editProfile": "Edit profile",
+  "changePhoto": "Change photo",
+  "profileUpdated": "Profile updated successfully",
+  "notifications": "Notifications",
+  "language": "Language",
+  "help": "Help",
+  "contact": "Contact",
+  "version": "Version",
+  "faq": "Frequently asked questions",
+  "notificationsGeneral": "General notifications",
+  "@notificationsGeneral": {
+    "description": "General notifications"
+  },
+  "notificationsGeneralSubtitle": "Receive general app updates",
+  "@notificationsGeneralSubtitle": {
+    "description": "General notifications subtitle"
+  },
+  "profileUpdatedSuccess": "Profile updated successfully",
+  "@profileUpdatedSuccess": {
+    "description": "Profile updated"
+  },
+  "faq1Question": "How do I add a habit?",
+  "@faq1Question": {
+    "description": "FAQ 1 question"
+  },
+  "faq1Answer": "Tap the + button on the main screen or in the Habits tab.",
+  "@faq1Answer": {
+    "description": "FAQ 1 answer"
+  },
+  "faq2Question": "How do I complete a habit?",
+  "@faq2Question": {
+    "description": "FAQ 2 question"
+  },
+  "faq2Answer": "Tap the circle on the right side of the habit to mark it as completed.",
+  "@faq2Answer": {
+    "description": "FAQ 2 answer"
+  },
+  "faq3Question": "What is a streak?",
+  "@faq3Question": {
+    "description": "FAQ 3 question"
+  },
+  "faq3Answer": "A streak is the number of consecutive days you have completed a habit.",
+  "@faq3Answer": {
+    "description": "FAQ 3 answer"
+  },
+  "faq4Question": "Is my data secure?",
+  "@faq4Question": {
+    "description": "FAQ 4 question"
+  },
+  "faq4Answer": "Yes, all data is stored securely in Firebase.",
+  "@faq4Answer": {
+    "description": "FAQ 4 answer"
+  },
+  "days": "days",
+  "@days": {
+    "description": "Days"
+  },
+  "habitCompletedSuccess": "Habit completed!",
+  "@habitCompletedSuccess": {
+    "description": "Habit completed"
+  },
+  "habitCreatedSuccess": "Habit created successfully",
+  "@habitCreatedSuccess": {
+    "description": "Habit created"
+  },
+  "habitDeletedSuccess": "Habit deleted",
+  "@habitDeletedSuccess": {
+    "description": "Habit deleted"
+  },
+  "selectColor": "Color",
+  "@selectColor": {
+    "description": "Select color"
+  },
+  "selectIcon": "Icon",
+  "@selectIcon": {
+    "description": "Select icon"
+  }
+}

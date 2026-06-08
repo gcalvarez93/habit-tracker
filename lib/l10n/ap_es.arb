@@ -1,0 +1,273 @@
+{
+  "@@locale": "es",
+  "appName": "Habit Tracker",
+  "@appName": {
+    "description": "appName"
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "navHome"
+  },
+  "navHabits": "Habits",
+  "@navHabits": {
+    "description": "navHabits"
+  },
+  "navStats": "Statistics",
+  "@navStats": {
+    "description": "navStats"
+  },
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "navProfile"
+  },
+  "loginTitle": "Sign in to continue",
+  "@loginTitle": {
+    "description": "loginTitle"
+  },
+  "loginEmail": "Email",
+  "@loginEmail": {
+    "description": "loginEmail"
+  },
+  "loginPassword": "Password",
+  "@loginPassword": {
+    "description": "loginPassword"
+  },
+  "loginButton": "Sign in",
+  "@loginButton": {
+    "description": "loginButton"
+  },
+  "loginWithGoogle": "Continue with Google",
+  "@loginWithGoogle": {
+    "description": "loginWithGoogle"
+  },
+  "loginNoAccount": "Don't have an account?",
+  "@loginNoAccount": {
+    "description": "loginNoAccount"
+  },
+  "loginRegister": "Register",
+  "@loginRegister": {
+    "description": "loginRegister"
+  },
+  "registerTitle": "Create account",
+  "@registerTitle": {
+    "description": "registerTitle"
+  },
+  "registerName": "Name",
+  "@registerName": {
+    "description": "registerName"
+  },
+  "registerButton": "Register",
+  "@registerButton": {
+    "description": "registerButton"
+  },
+  "validationRequired": "This field is required",
+  "@validationRequired": {
+    "description": "validationRequired"
+  },
+  "validationEmail": "Invalid email",
+  "@validationEmail": {
+    "description": "validationEmail"
+  },
+  "validationPasswordLength": "Minimum 6 characters",
+  "@validationPasswordLength": {
+    "description": "validationPasswordLength"
+  },
+  "logout": "Sign out",
+  "@logout": {
+    "description": "logout"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "save"
+  },
+  "saveChanges": "Save changes",
+  "@saveChanges": {
+    "description": "saveChanges"
+  },
+  "greeting": "Hello, {name} 👋",
+  "todaySummary": "Today's summary",
+  "@todaySummary": {
+    "description": "todaySummary"
+  },
+  "habits": "Habits",
+  "@habits": {
+    "description": "habits"
+  },
+  "addHabit": "Add habit",
+  "@addHabit": {
+    "description": "addHabit"
+  },
+  "noHabits": "No habits yet",
+  "@noHabits": {
+    "description": "noHabits"
+  },
+  "habitName": "Habit name",
+  "@habitName": {
+    "description": "habitName"
+  },
+  "habitDescription": "Description",
+  "@habitDescription": {
+    "description": "habitDescription"
+  },
+  "habitFrequency": "Frequency",
+  "@habitFrequency": {
+    "description": "habitFrequency"
+  },
+  "habitDeleted": "Habit deleted",
+  "@habitDeleted": {
+    "description": "habitDeleted"
+  },
+  "habitCreated": "Habit created successfully",
+  "@habitCreated": {
+    "description": "habitCreated"
+  },
+  "habitCompleted": "Habit completed",
+  "@habitCompleted": {
+    "description": "habitCompleted"
+  },
+  "habitUpdated": "Habit updated successfully",
+  "@habitUpdated": {
+    "description": "habitUpdated"
+  },
+  "streak": "Streak",
+  "@streak": {
+    "description": "streak"
+  },
+  "streakDays": "{days} days",
+  "completedToday": "Completed today",
+  "@completedToday": {
+    "description": "completedToday"
+  },
+  "frequency": "Frequency",
+  "@frequency": {
+    "description": "frequency"
+  },
+  "daily": "Daily",
+  "@daily": {
+    "description": "daily"
+  },
+  "weekly": "Weekly",
+  "@weekly": {
+    "description": "weekly"
+  },
+  "stats": "Statistics",
+  "@stats": {
+    "description": "stats"
+  },
+  "completionRate": "Completion rate",
+  "@completionRate": {
+    "description": "completionRate"
+  },
+  "bestStreak": "Best streak",
+  "@bestStreak": {
+    "description": "bestStreak"
+  },
+  "totalCompleted": "Total completed",
+  "@totalCompleted": {
+    "description": "totalCompleted"
+  },
+  "editProfile": "Edit profile",
+  "@editProfile": {
+    "description": "editProfile"
+  },
+  "changePhoto": "Change photo",
+  "@changePhoto": {
+    "description": "changePhoto"
+  },
+  "profileUpdated": "Profile updated successfully",
+  "@profileUpdated": {
+    "description": "profileUpdated"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "notifications"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "language"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "help"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "contact"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "version"
+  },
+  "faq": "Frequently asked questions",
+  "@faq": {
+    "description": "faq"
+  },
+  "days": "days",
+  "@days": {
+    "description": "days"
+  },
+  "selectIcon": "Icon",
+  "@selectIcon": {
+    "description": "selectIcon"
+  },
+  "selectColor": "Color",
+  "@selectColor": {
+    "description": "selectColor"
+  },
+  "habitDeletedSuccess": "Habit deleted",
+  "@habitDeletedSuccess": {
+    "description": "habitDeletedSuccess"
+  },
+  "habitCreatedSuccess": "Habit created successfully",
+  "@habitCreatedSuccess": {
+    "description": "habitCreatedSuccess"
+  },
+  "habitCompletedSuccess": "Habit completed!",
+  "@habitCompletedSuccess": {
+    "description": "habitCompletedSuccess"
+  },
+  "notificationsGeneral": "Notificaciones generales",
+  "@notificationsGeneral": {
+    "description": "Notificaciones generales"
+  },
+  "notificationsGeneralSubtitle": "Recibe actualizaciones generales de la app",
+  "@notificationsGeneralSubtitle": {
+    "description": "Subtítulo notificaciones generales"
+  },
+  "profileUpdatedSuccess": "Perfil actualizado correctamente",
+  "@profileUpdatedSuccess": {
+    "description": "Perfil actualizado"
+  },
+  "faq1Question": "¿Cómo añado un hábito?",
+  "@faq1Question": {
+    "description": "FAQ 1 pregunta"
+  },
+  "faq1Answer": "Pulsa el botón + en la pantalla principal o en la pestaña de Hábitos.",
+  "@faq1Answer": {
+    "description": "FAQ 1 respuesta"
+  },
+  "faq2Question": "¿Cómo completo un hábito?",
+  "@faq2Question": {
+    "description": "FAQ 2 pregunta"
+  },
+  "faq2Answer": "Pulsa el círculo a la derecha del hábito para marcarlo como completado.",
+  "@faq2Answer": {
+    "description": "FAQ 2 respuesta"
+  },
+  "faq3Question": "¿Qué es la racha?",
+  "@faq3Question": {
+    "description": "FAQ 3 pregunta"
+  },
+  "faq3Answer": "La racha es el número de días consecutivos que has completado un hábito.",
+  "@faq3Answer": {
+    "description": "FAQ 3 respuesta"
+  },
+  "faq4Question": "¿Mis datos están seguros?",
+  "@faq4Question": {
+    "description": "FAQ 4 pregunta"
+  },
+  "faq4Answer": "Sí, todos los datos se almacenan de forma segura en Firebase.",
+  "@faq4Answer": {
+    "description": "FAQ 4 respuesta"
+  }
+}
