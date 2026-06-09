@@ -63,15 +63,27 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     required String language,
     required bool notifications,
   }) async {
-    state = ProfileLoading();
+    // Actualiza el estado localmente sin pasar por Loading
+    final current = state;
+    if (current is ProfileLoaded) {
+      state = ProfileLoaded(current.profile.copyWith(
+        name: name,
+        language: language,
+        notifications: notifications,
+      ));
+    }
+
+    // Guarda en la API en segundo plano
     final result = await _updateProfile(
       name: name,
       language: language,
       notifications: notifications,
     );
+
     return result.fold(
           (failure) {
-        state = ProfileError(failure.toString());
+        // Si falla, restaura el estado anterior
+        state = current;
         return false;
       },
           (profile) {

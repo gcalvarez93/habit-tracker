@@ -7,7 +7,6 @@ import 'features/auth/presentation/pages/login_page.dart';
 import 'features/auth/presentation/providers/auth_provider.dart';
 import 'features/home/presentation/pages/home_page.dart';
 import 'features/profile/presentation/pages/language_page.dart';
-import 'features/profile/presentation/providers/profile_provider.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
@@ -17,23 +16,20 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  Widget build(BuildContext context) {
     final locale = ref.watch(localeProvider);
 
-    ref.listen(profileProvider, (_, state) {
-      if (state is ProfileLoaded) {
-        final lang = state.profile.language;
-        if (ref.read(localeProvider).languageCode != lang) {
-          ref.read(localeProvider.notifier).state = Locale(lang);
-        }
-      }
-    });
-
     return MaterialApp(
+      key: ValueKey(locale.languageCode),
       title: 'Habit Tracker',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -51,6 +47,7 @@ class MyApp extends ConsumerWidget {
         Locale('es'),
         Locale('en'),
       ],
+      localeResolutionCallback: (_, supportedLocales) => locale,
       home: const AuthGate(),
     );
   }

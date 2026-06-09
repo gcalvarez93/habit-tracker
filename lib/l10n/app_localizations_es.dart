@@ -12,161 +12,161 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appName => 'Habit Tracker';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'Inicio';
 
   @override
-  String get navHabits => 'Habits';
+  String get navHabits => 'Hábitos';
 
   @override
-  String get navStats => 'Statistics';
+  String get navStats => 'Estadísticas';
 
   @override
-  String get navProfile => 'Profile';
+  String get navProfile => 'Perfil';
 
   @override
-  String get loginTitle => 'Sign in to continue';
+  String get loginTitle => 'Inicia sesión para continuar';
 
   @override
   String get loginEmail => 'Email';
 
   @override
-  String get loginPassword => 'Password';
+  String get loginPassword => 'Contraseña';
 
   @override
-  String get loginButton => 'Sign in';
+  String get loginButton => 'Iniciar sesión';
 
   @override
-  String get loginWithGoogle => 'Continue with Google';
+  String get loginWithGoogle => 'Continuar con Google';
 
   @override
-  String get loginNoAccount => 'Don\'t have an account?';
+  String get loginNoAccount => '¿No tienes cuenta?';
 
   @override
-  String get loginRegister => 'Register';
+  String get loginRegister => 'Regístrate';
 
   @override
-  String get registerTitle => 'Create account';
+  String get registerTitle => 'Crear cuenta';
 
   @override
-  String get registerName => 'Name';
+  String get registerName => 'Nombre';
 
   @override
-  String get registerButton => 'Register';
+  String get registerButton => 'Registrarse';
 
   @override
-  String get validationRequired => 'This field is required';
+  String get validationRequired => 'Este campo es obligatorio';
 
   @override
-  String get validationEmail => 'Invalid email';
+  String get validationEmail => 'Email no válido';
 
   @override
-  String get validationPasswordLength => 'Minimum 6 characters';
+  String get validationPasswordLength => 'Mínimo 6 caracteres';
 
   @override
-  String get logout => 'Sign out';
+  String get logout => 'Cerrar sesión';
 
   @override
-  String get save => 'Save';
+  String get save => 'Guardar';
 
   @override
-  String get saveChanges => 'Save changes';
+  String get saveChanges => 'Guardar cambios';
 
   @override
   String greeting(Object name) {
-    return 'Hello, $name 👋';
+    return 'Hola, $name 👋';
   }
 
   @override
-  String get todaySummary => 'Today\'s summary';
+  String get todaySummary => 'Resumen de hoy';
 
   @override
-  String get habits => 'Habits';
+  String get habits => 'Hábitos';
 
   @override
-  String get addHabit => 'Add habit';
+  String get addHabit => 'Añadir hábito';
 
   @override
-  String get noHabits => 'No habits yet';
+  String get noHabits => 'No hay hábitos aún';
 
   @override
-  String get habitName => 'Habit name';
+  String get habitName => 'Nombre del hábito';
 
   @override
-  String get habitDescription => 'Description';
+  String get habitDescription => 'Descripción';
 
   @override
-  String get habitFrequency => 'Frequency';
+  String get habitFrequency => 'Frecuencia';
 
   @override
-  String get habitDeleted => 'Habit deleted';
+  String get habitDeleted => 'Hábito eliminado';
 
   @override
-  String get habitCreated => 'Habit created successfully';
+  String get habitCreated => 'Hábito creado correctamente';
 
   @override
-  String get habitCompleted => 'Habit completed';
+  String get habitCompleted => 'Hábito completado';
 
   @override
-  String get habitUpdated => 'Habit updated successfully';
+  String get habitUpdated => 'Hábito actualizado correctamente';
 
   @override
-  String get streak => 'Streak';
+  String get streak => 'Racha';
 
   @override
   String streakDays(Object days) {
-    return '$days days';
+    return '$days días';
   }
 
   @override
-  String get completedToday => 'Completed today';
+  String get completedToday => 'Completados hoy';
 
   @override
-  String get frequency => 'Frequency';
+  String get frequency => 'Frecuencia';
 
   @override
-  String get daily => 'Daily';
+  String get daily => 'Diario';
 
   @override
-  String get weekly => 'Weekly';
+  String get weekly => 'Semanal';
 
   @override
-  String get stats => 'Statistics';
+  String get stats => 'Estadísticas';
 
   @override
-  String get completionRate => 'Completion rate';
+  String get completionRate => 'Tasa de completado';
 
   @override
-  String get bestStreak => 'Best streak';
+  String get bestStreak => 'Mejor racha';
 
   @override
-  String get totalCompleted => 'Total completed';
+  String get totalCompleted => 'Total completados';
 
   @override
-  String get editProfile => 'Edit profile';
+  String get editProfile => 'Editar perfil';
 
   @override
-  String get changePhoto => 'Change photo';
+  String get changePhoto => 'Cambiar foto';
 
   @override
-  String get profileUpdated => 'Profile updated successfully';
+  String get profileUpdated => 'Perfil actualizado correctamente';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Notificaciones';
 
   @override
-  String get language => 'Language';
+  String get language => 'Idioma';
 
   @override
-  String get help => 'Help';
+  String get help => 'Ayuda';
 
   @override
-  String get contact => 'Contact';
+  String get contact => 'Contacto';
 
   @override
-  String get version => 'Version';
+  String get version => 'Versión';
 
   @override
-  String get faq => 'Frequently asked questions';
+  String get faq => 'Preguntas frecuentes';
 
   @override
   String get notificationsGeneral => 'Notificaciones generales';
@@ -202,20 +202,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get faq4Answer => 'Sí, todos los datos se almacenan de forma segura en Firebase.';
 
   @override
-  String get days => 'days';
+  String get days => 'días';
 
   @override
-  String get habitCompletedSuccess => 'Habit completed!';
+  String get habitCompletedSuccess => '¡Hábito completado!';
 
   @override
-  String get habitCreatedSuccess => 'Habit created successfully';
+  String get habitCreatedSuccess => 'Hábito creado correctamente';
 
   @override
-  String get habitDeletedSuccess => 'Habit deleted';
+  String get habitDeletedSuccess => 'Hábito eliminado';
 
   @override
   String get selectColor => 'Color';
 
   @override
-  String get selectIcon => 'Icon';
+  String get selectIcon => 'Icono';
 }

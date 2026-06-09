@@ -4,23 +4,23 @@
   "@appName": {
     "description": "appName"
   },
-  "navHome": "Home",
+  "navHome": "Inicio",
   "@navHome": {
     "description": "navHome"
   },
-  "navHabits": "Habits",
+  "navHabits": "Hábitos",
   "@navHabits": {
     "description": "navHabits"
   },
-  "navStats": "Statistics",
+  "navStats": "Estadísticas",
   "@navStats": {
     "description": "navStats"
   },
-  "navProfile": "Profile",
+  "navProfile": "Perfil",
   "@navProfile": {
     "description": "navProfile"
   },
-  "loginTitle": "Sign in to continue",
+  "loginTitle": "Inicia sesión para continuar",
   "@loginTitle": {
     "description": "loginTitle"
   },
@@ -28,185 +28,185 @@
   "@loginEmail": {
     "description": "loginEmail"
   },
-  "loginPassword": "Password",
+  "loginPassword": "Contraseña",
   "@loginPassword": {
     "description": "loginPassword"
   },
-  "loginButton": "Sign in",
+  "loginButton": "Iniciar sesión",
   "@loginButton": {
     "description": "loginButton"
   },
-  "loginWithGoogle": "Continue with Google",
+  "loginWithGoogle": "Continuar con Google",
   "@loginWithGoogle": {
     "description": "loginWithGoogle"
   },
-  "loginNoAccount": "Don't have an account?",
+  "loginNoAccount": "¿No tienes cuenta?",
   "@loginNoAccount": {
     "description": "loginNoAccount"
   },
-  "loginRegister": "Register",
+  "loginRegister": "Regístrate",
   "@loginRegister": {
     "description": "loginRegister"
   },
-  "registerTitle": "Create account",
+  "registerTitle": "Crear cuenta",
   "@registerTitle": {
     "description": "registerTitle"
   },
-  "registerName": "Name",
+  "registerName": "Nombre",
   "@registerName": {
     "description": "registerName"
   },
-  "registerButton": "Register",
+  "registerButton": "Registrarse",
   "@registerButton": {
     "description": "registerButton"
   },
-  "validationRequired": "This field is required",
+  "validationRequired": "Este campo es obligatorio",
   "@validationRequired": {
     "description": "validationRequired"
   },
-  "validationEmail": "Invalid email",
+  "validationEmail": "Email no válido",
   "@validationEmail": {
     "description": "validationEmail"
   },
-  "validationPasswordLength": "Minimum 6 characters",
+  "validationPasswordLength": "Mínimo 6 caracteres",
   "@validationPasswordLength": {
     "description": "validationPasswordLength"
   },
-  "logout": "Sign out",
+  "logout": "Cerrar sesión",
   "@logout": {
     "description": "logout"
   },
-  "save": "Save",
+  "save": "Guardar",
   "@save": {
     "description": "save"
   },
-  "saveChanges": "Save changes",
+  "saveChanges": "Guardar cambios",
   "@saveChanges": {
     "description": "saveChanges"
   },
-  "greeting": "Hello, {name} 👋",
-  "todaySummary": "Today's summary",
+  "greeting": "Hola, {name} 👋",
+  "todaySummary": "Resumen de hoy",
   "@todaySummary": {
     "description": "todaySummary"
   },
-  "habits": "Habits",
+  "habits": "Hábitos",
   "@habits": {
     "description": "habits"
   },
-  "addHabit": "Add habit",
+  "addHabit": "Añadir hábito",
   "@addHabit": {
     "description": "addHabit"
   },
-  "noHabits": "No habits yet",
+  "noHabits": "No hay hábitos aún",
   "@noHabits": {
     "description": "noHabits"
   },
-  "habitName": "Habit name",
+  "habitName": "Nombre del hábito",
   "@habitName": {
     "description": "habitName"
   },
-  "habitDescription": "Description",
+  "habitDescription": "Descripción",
   "@habitDescription": {
     "description": "habitDescription"
   },
-  "habitFrequency": "Frequency",
+  "habitFrequency": "Frecuencia",
   "@habitFrequency": {
     "description": "habitFrequency"
   },
-  "habitDeleted": "Habit deleted",
+  "habitDeleted": "Hábito eliminado",
   "@habitDeleted": {
     "description": "habitDeleted"
   },
-  "habitCreated": "Habit created successfully",
+  "habitCreated": "Hábito creado correctamente",
   "@habitCreated": {
     "description": "habitCreated"
   },
-  "habitCompleted": "Habit completed",
+  "habitCompleted": "Hábito completado",
   "@habitCompleted": {
     "description": "habitCompleted"
   },
-  "habitUpdated": "Habit updated successfully",
+  "habitUpdated": "Hábito actualizado correctamente",
   "@habitUpdated": {
     "description": "habitUpdated"
   },
-  "streak": "Streak",
+  "streak": "Racha",
   "@streak": {
     "description": "streak"
   },
-  "streakDays": "{days} days",
-  "completedToday": "Completed today",
+  "streakDays": "{days} días",
+  "completedToday": "Completados hoy",
   "@completedToday": {
     "description": "completedToday"
   },
-  "frequency": "Frequency",
+  "frequency": "Frecuencia",
   "@frequency": {
     "description": "frequency"
   },
-  "daily": "Daily",
+  "daily": "Diario",
   "@daily": {
     "description": "daily"
   },
-  "weekly": "Weekly",
+  "weekly": "Semanal",
   "@weekly": {
     "description": "weekly"
   },
-  "stats": "Statistics",
+  "stats": "Estadísticas",
   "@stats": {
     "description": "stats"
   },
-  "completionRate": "Completion rate",
+  "completionRate": "Tasa de completado",
   "@completionRate": {
     "description": "completionRate"
   },
-  "bestStreak": "Best streak",
+  "bestStreak": "Mejor racha",
   "@bestStreak": {
     "description": "bestStreak"
   },
-  "totalCompleted": "Total completed",
+  "totalCompleted": "Total completados",
   "@totalCompleted": {
     "description": "totalCompleted"
   },
-  "editProfile": "Edit profile",
+  "editProfile": "Editar perfil",
   "@editProfile": {
     "description": "editProfile"
   },
-  "changePhoto": "Change photo",
+  "changePhoto": "Cambiar foto",
   "@changePhoto": {
     "description": "changePhoto"
   },
-  "profileUpdated": "Profile updated successfully",
+  "profileUpdated": "Perfil actualizado correctamente",
   "@profileUpdated": {
     "description": "profileUpdated"
   },
-  "notifications": "Notifications",
+  "notifications": "Notificaciones",
   "@notifications": {
     "description": "notifications"
   },
-  "language": "Language",
+  "language": "Idioma",
   "@language": {
     "description": "language"
   },
-  "help": "Help",
+  "help": "Ayuda",
   "@help": {
     "description": "help"
   },
-  "contact": "Contact",
+  "contact": "Contacto",
   "@contact": {
     "description": "contact"
   },
-  "version": "Version",
+  "version": "Versión",
   "@version": {
     "description": "version"
   },
-  "faq": "Frequently asked questions",
+  "faq": "Preguntas frecuentes",
   "@faq": {
     "description": "faq"
   },
-  "days": "days",
+  "days": "días",
   "@days": {
     "description": "days"
   },
-  "selectIcon": "Icon",
+  "selectIcon": "Icono",
   "@selectIcon": {
     "description": "selectIcon"
   },
@@ -214,15 +214,15 @@
   "@selectColor": {
     "description": "selectColor"
   },
-  "habitDeletedSuccess": "Habit deleted",
+  "habitDeletedSuccess": "Hábito eliminado",
   "@habitDeletedSuccess": {
     "description": "habitDeletedSuccess"
   },
-  "habitCreatedSuccess": "Habit created successfully",
+  "habitCreatedSuccess": "Hábito creado correctamente",
   "@habitCreatedSuccess": {
     "description": "habitCreatedSuccess"
   },
-  "habitCompletedSuccess": "Habit completed!",
+  "habitCompletedSuccess": "¡Hábito completado!",
   "@habitCompletedSuccess": {
     "description": "habitCompletedSuccess"
   },
