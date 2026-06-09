@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        options:
+          exclude:
+            - lib/core/config/api_config.dart
+            - lib/core/config/app_config.dart
