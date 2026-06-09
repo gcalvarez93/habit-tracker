@@ -17,10 +17,12 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         child: Padding(
@@ -36,14 +38,15 @@ class NotificationTile extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(subtitle,
                         style: TextStyle(
-                            color: Colors.grey.shade500, fontSize: 12)),
+                            color: colorScheme.onSurface.withOpacity(0.5),
+                            fontSize: 12)),
                   ],
                 ),
               ),
               Switch(
                 value: value,
                 onChanged: onChanged,
-                activeColor: const Color(0xFF7C3AED),
+                activeColor: colorScheme.primary,
               ),
             ],
           ),

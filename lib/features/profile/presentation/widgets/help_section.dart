@@ -15,27 +15,29 @@ class HelpSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              Icon(icon, color: const Color(0xFF7C3AED)),
+              Icon(icon, color: colorScheme.primary),
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title,
                       style: TextStyle(
-                          color: Colors.grey.shade500, fontSize: 12)),
+                          color: colorScheme.onSurface.withOpacity(0.5),
+                          fontSize: 12)),
                   Text(content,
-                      style:
-                      const TextStyle(fontWeight: FontWeight.w600)),
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
                 ],
               ),
             ],

@@ -22,13 +22,14 @@ class ProfilePage extends ConsumerWidget {
     final user = authState is AuthAuthenticated ? authState.user : null;
 
     final habits = habitState is HabitLoaded ? habitState.habits : [];
-    final totalCompleted = habits.isEmpty ? 0 : habits.map((h) => h.totalCompleted).reduce((a, b) => a + b);
+    final totalCompleted = habits.isEmpty
+        ? 0
+        : habits.map((h) => h.totalCompleted).reduce((a, b) => a + b);
     final bestStreak = habits.isEmpty
         ? 0
         : habits.map((h) => h.bestStreak).reduce((a, b) => a > b ? a : b);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
         title: Text(l10n.navProfile),
         backgroundColor: Colors.transparent,
@@ -43,7 +44,6 @@ class ProfilePage extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header con gradiente
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(32),
@@ -74,42 +74,29 @@ class ProfilePage extends ConsumerWidget {
                         : null,
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    user?.name ?? 'Usuario',
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    user?.email ?? '',
-                    style: const TextStyle(color: Colors.white70, fontSize: 14),
-                  ),
+                  Text(user?.name ?? 'Usuario',
+                      style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white)),
+                  Text(user?.email ?? '',
+                      style: const TextStyle(
+                          color: Colors.white70, fontSize: 14)),
                   const SizedBox(height: 24),
-                  // Stats row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      _StatItem(value: '${habits.length}', label: l10n.habits),
+                      _StatItem(value: '$bestStreak', label: l10n.bestStreak),
                       _StatItem(
-                        value: '${habits.length}',
-                        label: l10n.habits,
-                      ),
-                      _StatItem(
-                        value: '$bestStreak',
-                        label: l10n.bestStreak,
-                      ),
-                      _StatItem(
-                        value: '$totalCompleted',
-                        label: l10n.totalCompleted,
-                      ),
+                          value: '$totalCompleted',
+                          label: l10n.totalCompleted),
                     ],
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
-            // Opciones
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -118,19 +105,22 @@ class ProfilePage extends ConsumerWidget {
                     icon: Icons.person_outline,
                     title: l10n.editProfile,
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const EditProfilePage())),
+                        MaterialPageRoute(
+                            builder: (_) => const EditProfilePage())),
                   ),
                   ProfileOption(
                     icon: Icons.notifications_outlined,
                     title: l10n.notifications,
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const NotificationsPage())),
+                        MaterialPageRoute(
+                            builder: (_) => const NotificationsPage())),
                   ),
                   ProfileOption(
                     icon: Icons.language_outlined,
                     title: l10n.language,
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const LanguagePage())),
+                        MaterialPageRoute(
+                            builder: (_) => const LanguagePage())),
                   ),
                   ProfileOption(
                     icon: Icons.help_outline,
@@ -159,18 +149,13 @@ class _StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white70, fontSize: 12),
-        ),
+        Text(value,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold)),
+        Text(label,
+            style: const TextStyle(color: Colors.white70, fontSize: 12)),
       ],
     );
   }

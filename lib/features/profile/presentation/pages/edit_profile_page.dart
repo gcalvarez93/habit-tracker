@@ -42,9 +42,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
       final profileState = ref.read(profileProvider);
       final p = profileState is ProfileLoaded ? profileState.profile : null;
 
-      await FirebaseAuth.instance.currentUser?.updateDisplayName(
-        _nameController.text.trim(),
-      );
+      await FirebaseAuth.instance.currentUser
+          ?.updateDisplayName(_nameController.text.trim());
 
       await ref.read(profileProvider.notifier).updateProfile(
         name: _nameController.text.trim(),
@@ -58,7 +57,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(AppLocalizations.of(context)!.profileUpdatedSuccess),
-            backgroundColor: const Color(0xFF7C3AED),
+            backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         );
         Navigator.pop(context);
@@ -77,6 +76,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -95,26 +95,24 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             key: _formKey,
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 50,
-                  backgroundColor: Color(0xFF7C3AED),
-                  child: Icon(Icons.person, size: 50, color: Colors.white),
+                  backgroundColor: colorScheme.primary,
+                  child: const Icon(Icons.person, size: 50, color: Colors.white),
                 ),
                 const SizedBox(height: 8),
                 TextButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.camera_alt,
-                      color: Color(0xFF7C3AED)),
+                  icon: Icon(Icons.camera_alt, color: colorScheme.primary),
                   label: Text(l10n.changePhoto,
-                      style: const TextStyle(color: Color(0xFF7C3AED))),
+                      style: TextStyle(color: colorScheme.primary)),
                 ),
                 const SizedBox(height: 24),
                 AuthTextField(
                   controller: _nameController,
                   label: l10n.registerName,
                   validator: (value) {
-                    if (value == null || value.isEmpty)
-                      return l10n.validationRequired;
+                    if (value == null || value.isEmpty) return l10n.validationRequired;
                     return null;
                   },
                 ),
@@ -124,7 +122,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _save,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF7C3AED),
+                      backgroundColor: colorScheme.primary,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(

@@ -16,7 +16,6 @@ class HabitsPage extends ConsumerWidget {
     final habitState = ref.watch(habitProvider);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
         title: Text(l10n.navHabits),
         backgroundColor: Colors.transparent,
@@ -27,8 +26,7 @@ class HabitsPage extends ConsumerWidget {
         HabitLoaded(:final habits) => habits.isEmpty
             ? const HabitEmptyState()
             : RefreshIndicator(
-          onRefresh: () =>
-              ref.read(habitProvider.notifier).loadHabits(),
+          onRefresh: () => ref.read(habitProvider.notifier).loadHabits(),
           child: ListView.builder(
             padding: const EdgeInsets.all(16),
             itemCount: habits.length,
@@ -54,7 +52,7 @@ class HabitsPage extends ConsumerWidget {
           backgroundColor: Colors.transparent,
           builder: (_) => const AddHabitSheet(),
         ),
-        backgroundColor: const Color(0xFF7C3AED),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

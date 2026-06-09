@@ -17,6 +17,7 @@ class DashboardPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final authState = ref.watch(authProvider);
     final habitState = ref.watch(habitProvider);
+    final colorScheme = Theme.of(context).colorScheme;
 
     final userName = authState is AuthAuthenticated
         ? authState.user.name ?? 'Usuario'
@@ -30,7 +31,6 @@ class DashboardPage extends ConsumerWidget {
         : habits.map((h) => h.streak).reduce((a, b) => a > b ? a : b);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () => ref.read(habitProvider.notifier).loadHabits(),
@@ -40,7 +40,6 @@ class DashboardPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,25 +58,20 @@ class DashboardPage extends ConsumerWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: Colors.grey),
+                              ?.copyWith(color: colorScheme.onSurface.withOpacity(0.5)),
                         ),
                       ],
                     ),
                     GestureDetector(
-                      onTap: () =>
-                      ref.read(homeIndexProvider.notifier).state = 2,
+                      onTap: () => ref.read(homeIndexProvider.notifier).state = 2,
                       child: CircleAvatar(
-                        backgroundColor:
-                        const Color(0xFF7C3AED).withOpacity(0.1),
-                        child: const Icon(Icons.person,
-                            color: Color(0xFF7C3AED)),
+                        backgroundColor: colorScheme.primary.withOpacity(0.1),
+                        child: Icon(Icons.person, color: colorScheme.primary),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
-
-                // Progress card
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(24),
@@ -92,11 +86,8 @@ class DashboardPage extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        l10n.completedToday,
-                        style: const TextStyle(
-                            color: Colors.white70, fontSize: 14),
-                      ),
+                      Text(l10n.completedToday,
+                          style: const TextStyle(color: Colors.white70, fontSize: 14)),
                       const SizedBox(height: 8),
                       Text(
                         '$completedToday / $totalHabits',
@@ -113,8 +104,7 @@ class DashboardPage extends ConsumerWidget {
                           child: LinearProgressIndicator(
                             value: completedToday / totalHabits,
                             backgroundColor: Colors.white.withOpacity(0.3),
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.white),
+                            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                             minHeight: 8,
                           ),
                         ),
@@ -122,8 +112,6 @@ class DashboardPage extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-
-                // Stats row
                 Row(
                   children: [
                     HabitStatsCard(
@@ -137,13 +125,11 @@ class DashboardPage extends ConsumerWidget {
                       label: l10n.habits,
                       value: '$totalHabits',
                       icon: Icons.check_circle_outline,
-                      color: const Color(0xFF7C3AED),
+                      color: colorScheme.primary,
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
-
-                // Today's habits
                 Text(
                   l10n.navHabits,
                   style: Theme.of(context)
@@ -152,28 +138,23 @@ class DashboardPage extends ConsumerWidget {
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
-
                 if (habitState is HabitLoading)
                   const Center(child: CircularProgressIndicator())
                 else if (habits.isEmpty)
                   Center(
                     child: Text(
                       l10n.noHabits,
-                      style: TextStyle(color: Colors.grey.shade500),
+                      style: TextStyle(color: colorScheme.onSurface.withOpacity(0.5)),
                     ),
                   )
                 else
-                  ...habits.take(3).map(
-                        (h) => HabitCard(
-                      habit: h,
-                      onComplete: () => ref
-                          .read(habitProvider.notifier)
-                          .completeHabit(h.id),
-                      onDelete: () => ref
-                          .read(habitProvider.notifier)
-                          .deleteHabit(h.id),
-                    ),
-                  ),
+                  ...habits.take(3).map((h) => HabitCard(
+                    habit: h,
+                    onComplete: () =>
+                        ref.read(habitProvider.notifier).completeHabit(h.id),
+                    onDelete: () =>
+                        ref.read(habitProvider.notifier).deleteHabit(h.id),
+                  )),
               ],
             ),
           ),

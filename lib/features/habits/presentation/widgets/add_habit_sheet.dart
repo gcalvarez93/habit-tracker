@@ -38,6 +38,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
       padding: EdgeInsets.only(
@@ -46,9 +47,9 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
         left: 24,
         right: 24,
       ),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -65,7 +66,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFF7C3AED)),
+                  borderSide: BorderSide(color: colorScheme.primary),
                 ),
               ),
             ),
@@ -77,12 +78,11 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFF7C3AED)),
+                  borderSide: BorderSide(color: colorScheme.primary),
                 ),
               ),
             ),
             const SizedBox(height: 16),
-            // Frecuencia
             Row(
               children: [
                 Expanded(
@@ -92,8 +92,8 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         color: _selectedFrequency == 'daily'
-                            ? const Color(0xFF7C3AED)
-                            : Colors.grey.shade100,
+                            ? colorScheme.primary
+                            : colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
@@ -102,7 +102,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                         style: TextStyle(
                           color: _selectedFrequency == 'daily'
                               ? Colors.white
-                              : Colors.grey,
+                              : colorScheme.onSurface.withOpacity(0.5),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -117,8 +117,8 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         color: _selectedFrequency == 'weekly'
-                            ? const Color(0xFF7C3AED)
-                            : Colors.grey.shade100,
+                            ? colorScheme.primary
+                            : colorScheme.surfaceContainerHighest,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
@@ -127,7 +127,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                         style: TextStyle(
                           color: _selectedFrequency == 'weekly'
                               ? Colors.white
-                              : Colors.grey,
+                              : colorScheme.onSurface.withOpacity(0.5),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -149,11 +149,11 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: _selectedIcon == icon
-                        ? const Color(0xFF7C3AED).withOpacity(0.1)
-                        : Colors.grey.shade100,
+                        ? colorScheme.primary.withOpacity(0.1)
+                        : colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(8),
                     border: _selectedIcon == icon
-                        ? Border.all(color: const Color(0xFF7C3AED))
+                        ? Border.all(color: colorScheme.primary)
                         : null,
                   ),
                   child: Text(icon, style: const TextStyle(fontSize: 24)),
@@ -177,7 +177,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                       color: c,
                       shape: BoxShape.circle,
                       border: _selectedColor == color
-                          ? Border.all(color: Colors.black, width: 3)
+                          ? Border.all(color: colorScheme.onSurface, width: 3)
                           : null,
                     ),
                   ),
@@ -200,13 +200,13 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(l10n.habitCreatedSuccess),
-                      backgroundColor: const Color(0xFF7C3AED),
+                      backgroundColor: colorScheme.primary,
                     ),
                   );
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF7C3AED),
+                backgroundColor: colorScheme.primary,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(

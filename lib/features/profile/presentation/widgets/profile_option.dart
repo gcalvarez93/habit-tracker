@@ -15,16 +15,19 @@ class ProfileOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         child: ListTile(
-          leading: Icon(icon, color: const Color(0xFF7C3AED)),
+          leading: Icon(icon, color: colorScheme.primary),
           title: Text(title),
-          trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+          trailing: Icon(Icons.arrow_forward_ios,
+              size: 16, color: colorScheme.onSurface.withOpacity(0.4)),
           onTap: onTap,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),

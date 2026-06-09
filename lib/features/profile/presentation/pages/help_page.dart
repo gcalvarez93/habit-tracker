@@ -49,9 +49,7 @@ class _HelpPageState extends State<HelpPage> {
               title: l10n.contact,
               content: AppConfig.contactEmail),
           HelpSection(
-              icon: Icons.language_outlined,
-              title: 'Web',
-              content: AppConfig.webUrl),
+              icon: Icons.language_outlined, title: 'Web', content: AppConfig.webUrl),
           HelpSection(
               icon: Icons.info_outline,
               title: l10n.version,

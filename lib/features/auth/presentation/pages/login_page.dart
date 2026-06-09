@@ -59,21 +59,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               children: [
                 const SizedBox(height: 60),
                 Icon(Icons.check_circle_outline,
-                    size: 80,
-                    color: Theme.of(context).colorScheme.primary),
+                    size: 80, color: Theme.of(context).colorScheme.primary),
                 const SizedBox(height: 24),
                 Text(
                   l10n.appName,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   l10n.loginTitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.grey,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withOpacity(0.5),
                   ),
                   textAlign: TextAlign.center,
                 ),

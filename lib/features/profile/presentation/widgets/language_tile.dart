@@ -19,10 +19,12 @@ class LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         child: ListTile(
@@ -30,11 +32,10 @@ class LanguageTile extends StatelessWidget {
           title: Text(language,
               style: const TextStyle(fontWeight: FontWeight.w600)),
           trailing: isSelected
-              ? const Icon(Icons.check_circle, color: Color(0xFF7C3AED))
+              ? Icon(Icons.check_circle, color: colorScheme.primary)
               : null,
           onTap: onTap,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );

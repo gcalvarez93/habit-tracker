@@ -27,6 +27,7 @@ class HabitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final color = _parseColor(habit.color);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Dismissible(
       key: Key(habit.id),
@@ -46,11 +47,11 @@ class HabitCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade100,
+              color: colorScheme.shadow.withOpacity(0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -74,16 +75,13 @@ class HabitCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    habit.name,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 16),
-                  ),
+                  Text(habit.name,
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
                   if (habit.description.isNotEmpty)
                     Text(
                       habit.description,
                       style: TextStyle(
-                          color: Colors.grey.shade500, fontSize: 12),
+                          color: colorScheme.onSurface.withOpacity(0.5), fontSize: 12),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -95,9 +93,7 @@ class HabitCard extends StatelessWidget {
                       Text(
                         l10n.streakDays(habit.streak),
                         style: TextStyle(
-                            color: color,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600),
+                            color: color, fontSize: 12, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -114,7 +110,9 @@ class HabitCard extends StatelessWidget {
                   color: habit.completedToday ? color : Colors.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: habit.completedToday ? color : Colors.grey.shade300,
+                    color: habit.completedToday
+                        ? color
+                        : colorScheme.onSurface.withOpacity(0.3),
                     width: 2,
                   ),
                 ),

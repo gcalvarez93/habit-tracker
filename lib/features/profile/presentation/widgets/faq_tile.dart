@@ -9,26 +9,27 @@ class FaqTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
-        color: Colors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         child: ExpansionTile(
           title: Text(question,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: 14)),
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Text(answer,
                   style: TextStyle(
-                      color: Colors.grey.shade600, fontSize: 14)),
+                      color: colorScheme.onSurface.withOpacity(0.6),
+                      fontSize: 14)),
             ),
           ],
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );
