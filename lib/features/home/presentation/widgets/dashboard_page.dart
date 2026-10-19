@@ -58,14 +58,14 @@ class DashboardPage extends ConsumerWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: colorScheme.onSurface.withOpacity(0.5)),
+                              ?.copyWith(color: colorScheme.onSurface.withValues(alpha: 0.5)),
                         ),
                       ],
                     ),
                     GestureDetector(
                       onTap: () => ref.read(homeIndexProvider.notifier).state = 2,
                       child: CircleAvatar(
-                        backgroundColor: colorScheme.primary.withOpacity(0.1),
+                        backgroundColor: colorScheme.primary.withValues(alpha: 0.1),
                         child: Icon(Icons.person, color: colorScheme.primary),
                       ),
                     ),
@@ -103,7 +103,7 @@ class DashboardPage extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(4),
                           child: LinearProgressIndicator(
                             value: completedToday / totalHabits,
-                            backgroundColor: Colors.white.withOpacity(0.3),
+                            backgroundColor: Colors.white.withValues(alpha: 0.3),
                             valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                             minHeight: 8,
                           ),
@@ -144,7 +144,7 @@ class DashboardPage extends ConsumerWidget {
                   Center(
                     child: Text(
                       l10n.noHabits,
-                      style: TextStyle(color: colorScheme.onSurface.withOpacity(0.5)),
+                      style: TextStyle(color: colorScheme.onSurface.withValues(alpha: 0.5)),
                     ),
                   )
                 else

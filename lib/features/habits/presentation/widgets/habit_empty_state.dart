@@ -15,11 +15,11 @@ class HabitEmptyState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.check_circle_outline, size: 80,
-              color: colorScheme.onSurface.withOpacity(0.2)),
+              color: colorScheme.onSurface.withValues(alpha: 0.2)),
           const SizedBox(height: 16),
           Text(l10n.noHabits,
               style: TextStyle(
-                  color: colorScheme.onSurface.withOpacity(0.5), fontSize: 16)),
+                  color: colorScheme.onSurface.withValues(alpha: 0.5), fontSize: 16)),
         ],
       ),
     );

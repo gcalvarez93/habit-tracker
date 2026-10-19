@@ -102,7 +102,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                         style: TextStyle(
                           color: _selectedFrequency == 'daily'
                               ? Colors.white
-                              : colorScheme.onSurface.withOpacity(0.5),
+                              : colorScheme.onSurface.withValues(alpha: 0.5),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -127,7 +127,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                         style: TextStyle(
                           color: _selectedFrequency == 'weekly'
                               ? Colors.white
-                              : colorScheme.onSurface.withOpacity(0.5),
+                              : colorScheme.onSurface.withValues(alpha: 0.5),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -149,7 +149,7 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: _selectedIcon == icon
-                        ? colorScheme.primary.withOpacity(0.1)
+                        ? colorScheme.primary.withValues(alpha: 0.1)
                         : colorScheme.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(8),
                     border: _selectedIcon == icon

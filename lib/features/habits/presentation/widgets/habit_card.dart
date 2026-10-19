@@ -51,7 +51,7 @@ class HabitCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: colorScheme.shadow.withOpacity(0.05),
+              color: colorScheme.shadow.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -63,7 +63,7 @@ class HabitCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.15),
+                color: color.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
@@ -81,7 +81,7 @@ class HabitCard extends StatelessWidget {
                     Text(
                       habit.description,
                       style: TextStyle(
-                          color: colorScheme.onSurface.withOpacity(0.5), fontSize: 12),
+                          color: colorScheme.onSurface.withValues(alpha: 0.5), fontSize: 12),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -112,7 +112,7 @@ class HabitCard extends StatelessWidget {
                   border: Border.all(
                     color: habit.completedToday
                         ? color
-                        : colorScheme.onSurface.withOpacity(0.3),
+                        : colorScheme.onSurface.withValues(alpha: 0.3),
                     width: 2,
                   ),
                 ),

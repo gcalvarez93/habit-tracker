@@ -34,7 +34,7 @@ class HelpSection extends StatelessWidget {
                 children: [
                   Text(title,
                       style: TextStyle(
-                          color: colorScheme.onSurface.withOpacity(0.5),
+                          color: colorScheme.onSurface.withValues(alpha: 0.5),
                           fontSize: 12)),
                   Text(content,
                       style: const TextStyle(fontWeight: FontWeight.w600)),

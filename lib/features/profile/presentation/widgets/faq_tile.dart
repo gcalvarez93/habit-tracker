@@ -20,16 +20,16 @@ class FaqTile extends StatelessWidget {
         child: ExpansionTile(
           title: Text(question,
               style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: Text(answer,
                   style: TextStyle(
-                      color: colorScheme.onSurface.withOpacity(0.6),
+                      color: colorScheme.onSurface.withValues(alpha: 0.6),
                       fontSize: 14)),
             ),
           ],
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );

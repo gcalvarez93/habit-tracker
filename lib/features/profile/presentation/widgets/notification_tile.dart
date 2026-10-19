@@ -38,7 +38,7 @@ class NotificationTile extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(subtitle,
                         style: TextStyle(
-                            color: colorScheme.onSurface.withOpacity(0.5),
+                            color: colorScheme.onSurface.withValues(alpha: 0.5),
                             fontSize: 12)),
                   ],
                 ),
@@ -46,7 +46,7 @@ class NotificationTile extends StatelessWidget {
               Switch(
                 value: value,
                 onChanged: onChanged,
-                activeColor: colorScheme.primary,
+                activeThumbColor: colorScheme.primary,
               ),
             ],
           ),

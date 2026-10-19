@@ -27,7 +27,7 @@ class ProfileOption extends StatelessWidget {
           leading: Icon(icon, color: colorScheme.primary),
           title: Text(title),
           trailing: Icon(Icons.arrow_forward_ios,
-              size: 16, color: colorScheme.onSurface.withOpacity(0.4)),
+              size: 16, color: colorScheme.onSurface.withValues(alpha: 0.4)),
           onTap: onTap,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
