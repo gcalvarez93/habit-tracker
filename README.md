@@ -1,6 +1,6 @@
 # Habit Tracker
 
-A daily habit tracking app built as part of the [CastroDev](https://castrodev.com) portfolio. Build streaks, track your progress and stay consistent with a clean and intuitive interface — with full dark mode support.
+A daily habit tracking app built as part of the CastroDev portfolio. Build streaks, track your progress and stay consistent with a clean and intuitive interface — with full dark mode support.
 
 ---
 
@@ -141,13 +141,12 @@ flutter test
 ## 🔗 Related
 
 - [CastroDev API](https://github.com/gcalvarez93/castrodev-api) — Shared .NET 10 backend
-- [castrodev.com](https://castrodev.com) — Portfolio
 
 ---
 
 ## 📄 License
 
-MIT © [Gabriel Castro](https://castrodev.com)
+MIT © Gabriel Castro
 
 ---
 
@@ -155,7 +154,7 @@ MIT © [Gabriel Castro](https://castrodev.com)
 
 # Habit Tracker
 
-App de seguimiento de hábitos desarrollada como parte del portfolio de [CastroDev](https://castrodev.com). Crea rachas, controla tu progreso y mantén la constancia con una interfaz limpia e intuitiva — con soporte completo de modo oscuro.
+App de seguimiento de hábitos desarrollada como parte del portfolio de CastroDev. Crea rachas, controla tu progreso y mantén la constancia con una interfaz limpia e intuitiva — con soporte completo de modo oscuro.
 
 ---
 
@@ -233,6 +232,12 @@ flutter test
 
 ---
 
+## 🔗 Relacionado
+
+- [CastroDev API](https://github.com/gcalvarez93/castrodev-api) — Backend compartido en .NET 10
+
+---
+
 ## 📄 Licencia
 
-MIT © [Gabriel Castro](https://castrodev.com)
+MIT © Gabriel Castro
