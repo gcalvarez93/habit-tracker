@@ -178,6 +178,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get profileUpdatedSuccess => 'Perfil actualizado correctamente';
 
   @override
+  String get profileUpdateError => 'No se pudo actualizar el perfil';
+
+  @override
   String get faq1Question => '¿Cómo añado un hábito?';
 
   @override

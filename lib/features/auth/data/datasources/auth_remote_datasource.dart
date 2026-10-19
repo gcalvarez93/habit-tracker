@@ -15,12 +15,21 @@ abstract interface class IAuthRemoteDatasource {
   });
   Future<UserModel> loginWithGoogle();
   Future<void> logout();
+
+  /// Actualiza el nombre visible, recarga el usuario y lo devuelve
+  /// (`null` si no hay sesión).
+  Future<UserModel?> updateDisplayName(String name);
+
   UserModel? getCurrentUser();
 }
 
 class AuthRemoteDatasource implements IAuthRemoteDatasource {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth;
+  final GoogleSignIn _googleSignIn;
+
+  AuthRemoteDatasource({FirebaseAuth? auth, GoogleSignIn? googleSignIn})
+      : _auth = auth ?? FirebaseAuth.instance,
+        _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   @override
   Future<UserModel> loginWithEmail({
@@ -31,7 +40,7 @@ class AuthRemoteDatasource implements IAuthRemoteDatasource {
       email: email,
       password: password,
     );
-    return _mapUser(result.user!);
+    return _mapUser(_requireUser(result, 'Login failed'));
   }
 
   @override
@@ -44,8 +53,9 @@ class AuthRemoteDatasource implements IAuthRemoteDatasource {
       email: email,
       password: password,
     );
-    await result.user!.updateDisplayName(name);
-    return _mapUser(result.user!);
+    final user = _requireUser(result, 'Registration failed');
+    await user.updateDisplayName(name);
+    return _mapUser(user);
   }
 
   @override
@@ -58,7 +68,7 @@ class AuthRemoteDatasource implements IAuthRemoteDatasource {
       idToken: googleAuth.idToken,
     );
     final result = await _auth.signInWithCredential(credential);
-    return _mapUser(result.user!);
+    return _mapUser(_requireUser(result, 'Google sign in failed'));
   }
 
   @override
@@ -68,10 +78,26 @@ class AuthRemoteDatasource implements IAuthRemoteDatasource {
   }
 
   @override
+  Future<UserModel?> updateDisplayName(String name) async {
+    final user = _auth.currentUser;
+    if (user == null) return null;
+    await user.updateDisplayName(name);
+    await user.reload();
+    final refreshed = _auth.currentUser;
+    return refreshed == null ? null : _mapUser(refreshed);
+  }
+
+  @override
   UserModel? getCurrentUser() {
     final user = _auth.currentUser;
     if (user == null) return null;
     return _mapUser(user);
+  }
+
+  User _requireUser(UserCredential credential, String message) {
+    final user = credential.user;
+    if (user == null) throw StateError(message);
+    return user;
   }
 
   UserModel _mapUser(User user) => UserModel(

@@ -15,5 +15,6 @@ abstract interface class IAuthRepository {
   });
   Future<Either<Failure, UserEntity>> loginWithGoogle();
   Future<Either<Failure, Unit>> logout();
+  Future<Either<Failure, UserEntity>> updateDisplayName(String name);
   UserEntity? getCurrentUser();
 }

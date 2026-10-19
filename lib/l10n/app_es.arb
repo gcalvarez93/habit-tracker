@@ -238,6 +238,10 @@
   "@profileUpdatedSuccess": {
     "description": "Perfil actualizado"
   },
+  "profileUpdateError": "No se pudo actualizar el perfil",
+  "@profileUpdateError": {
+    "description": "Error al actualizar el perfil"
+  },
   "faq1Question": "¿Cómo añado un hábito?",
   "@faq1Question": {
     "description": "FAQ 1 pregunta"

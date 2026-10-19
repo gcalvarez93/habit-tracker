@@ -1,7 +1,5 @@
 // Path: lib/features/auth/presentation/providers/auth_provider.dart
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failures.dart';
 import '../../data/datasources/auth_remote_datasource.dart';
 import '../../data/repositories/auth_repository_impl.dart';
@@ -11,6 +9,7 @@ import '../../domain/usecases/login_with_email_usecase.dart';
 import '../../domain/usecases/login_with_google_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';
 import '../../domain/usecases/register_with_email_usecase.dart';
+import '../../domain/usecases/update_display_name_usecase.dart';
 
 final authDatasourceProvider = Provider<IAuthRemoteDatasource>(
       (ref) => AuthRemoteDatasource(),
@@ -36,6 +35,10 @@ final logoutUseCaseProvider = Provider(
       (ref) => LogoutUseCase(ref.watch(authRepositoryProvider)),
 );
 
+final updateDisplayNameUseCaseProvider = Provider(
+      (ref) => UpdateDisplayNameUseCase(ref.watch(authRepositoryProvider)),
+);
+
 sealed class AuthState {}
 class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
@@ -54,6 +57,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   final RegisterWithEmailUseCase _registerWithEmail;
   final LoginWithGoogleUseCase _loginWithGoogle;
   final LogoutUseCase _logout;
+  final UpdateDisplayNameUseCase _updateDisplayName;
   final IAuthRepository _repository;
 
   AuthNotifier({
@@ -61,11 +65,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required RegisterWithEmailUseCase registerWithEmail,
     required LoginWithGoogleUseCase loginWithGoogle,
     required LogoutUseCase logout,
+    required UpdateDisplayNameUseCase updateDisplayName,
     required IAuthRepository repository,
   })  : _loginWithEmail = loginWithEmail,
         _registerWithEmail = registerWithEmail,
         _loginWithGoogle = loginWithGoogle,
         _logout = logout,
+        _updateDisplayName = updateDisplayName,
         _repository = repository,
         super(AuthInitial()) {
     _checkCurrentUser();
@@ -80,10 +86,18 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> refreshUser() async {
-    await FirebaseAuth.instance.currentUser?.reload();
-    final user = _repository.getCurrentUser();
-    if (user != null) state = AuthAuthenticated(user);
+  /// Actualiza el nombre visible del usuario. Devuelve `true` si se guardó y,
+  /// en ese caso, publica el usuario actualizado. Un fallo no altera el
+  /// estado de autenticación, para no expulsar al usuario de la pantalla.
+  Future<bool> updateDisplayName(String name) async {
+    final result = await _updateDisplayName(name);
+    return result.fold(
+          (_) => false,
+          (user) {
+        state = AuthAuthenticated(user);
+        return true;
+      },
+    );
   }
 
   Future<void> loginWithEmail({
@@ -147,6 +161,7 @@ final authProvider = StateNotifierProvider<AuthNotifier, AuthState>(
     registerWithEmail: ref.watch(registerWithEmailUseCaseProvider),
     loginWithGoogle: ref.watch(loginWithGoogleUseCaseProvider),
     logout: ref.watch(logoutUseCaseProvider),
+    updateDisplayName: ref.watch(updateDisplayNameUseCaseProvider),
     repository: ref.watch(authRepositoryProvider),
   ),
 );

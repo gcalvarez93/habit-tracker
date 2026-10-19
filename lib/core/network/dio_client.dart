@@ -21,7 +21,9 @@ class DioClient {
       onRequest: (options, handler) async {
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
-          final token = await user.getIdToken(true);
+          // Firebase cachea el token y lo renueva solo cuando está a punto de
+          // caducar; forzar el refresco añadía una llamada de red por petición.
+          final token = await user.getIdToken();
           options.headers['Authorization'] = 'Bearer $token';
         }
         return handler.next(options);

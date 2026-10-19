@@ -53,7 +53,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     state = ProfileLoading();
     final result = await _getProfile();
     result.fold(
-          (failure) => state = ProfileError(failure.toString()),
+          (failure) => state = ProfileError(failure.message),
           (profile) => state = ProfileLoaded(profile),
     );
   }

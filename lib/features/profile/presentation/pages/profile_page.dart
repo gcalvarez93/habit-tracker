@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../habits/presentation/providers/habit_provider.dart';
-import '../providers/profile_provider.dart';
 import '../widgets/profile_option.dart';
 import 'edit_profile_page.dart';
 import 'help_page.dart';

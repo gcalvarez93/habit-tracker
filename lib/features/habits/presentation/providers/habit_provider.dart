@@ -74,7 +74,7 @@ class HabitNotifier extends StateNotifier<HabitState> {
     state = HabitLoading();
     final result = await _getHabits();
     result.fold(
-          (failure) => state = HabitError(failure.toString()),
+          (failure) => state = HabitError(failure.message),
           (habits) => state = HabitLoaded(habits),
     );
   }
@@ -94,7 +94,7 @@ class HabitNotifier extends StateNotifier<HabitState> {
       color: color,
     );
     result.fold(
-          (failure) => state = HabitError(failure.toString()),
+          (failure) => state = HabitError(failure.message),
           (_) => loadHabits(),
     );
   }
@@ -102,7 +102,7 @@ class HabitNotifier extends StateNotifier<HabitState> {
   Future<void> completeHabit(String id) async {
     final result = await _completeHabit(id);
     result.fold(
-          (failure) => state = HabitError(failure.toString()),
+          (failure) => state = HabitError(failure.message),
           (_) => loadHabits(),
     );
   }
@@ -110,7 +110,7 @@ class HabitNotifier extends StateNotifier<HabitState> {
   Future<void> deleteHabit(String id) async {
     final result = await _deleteHabit(id);
     result.fold(
-          (failure) => state = HabitError(failure.toString()),
+          (failure) => state = HabitError(failure.message),
           (_) => loadHabits(),
     );
   }

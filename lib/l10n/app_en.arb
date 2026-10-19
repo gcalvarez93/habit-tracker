@@ -64,6 +64,10 @@
   "@profileUpdatedSuccess": {
     "description": "Profile updated"
   },
+  "profileUpdateError": "Could not update the profile",
+  "@profileUpdateError": {
+    "description": "Profile update failed"
+  },
   "faq1Question": "How do I add a habit?",
   "@faq1Question": {
     "description": "FAQ 1 question"

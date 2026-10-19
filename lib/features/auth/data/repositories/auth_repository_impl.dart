@@ -1,6 +1,7 @@
 // Path: lib/features/auth/data/repositories/auth_repository_impl.dart
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failures.dart';
+import '../../../../core/logging/app_logger.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/i_auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
@@ -22,7 +23,8 @@ class AuthRepositoryImpl implements IAuthRepository {
         password: password,
       );
       return right(_mapToEntity(model));
-    } catch (e) {
+    } catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.loginWithEmail', e, st);
       return left(Failure.auth(message: e.toString()));
     }
   }
@@ -40,7 +42,8 @@ class AuthRepositoryImpl implements IAuthRepository {
         name: name,
       );
       return right(_mapToEntity(model));
-    } catch (e) {
+    } catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.registerWithEmail', e, st);
       return left(Failure.auth(message: e.toString()));
     }
   }
@@ -50,7 +53,8 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       final model = await _datasource.loginWithGoogle();
       return right(_mapToEntity(model));
-    } catch (e) {
+    } catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.loginWithGoogle', e, st);
       return left(Failure.auth(message: e.toString()));
     }
   }
@@ -60,7 +64,22 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       await _datasource.logout();
       return right(unit);
-    } catch (e) {
+    } catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.logout', e, st);
+      return left(Failure.auth(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> updateDisplayName(String name) async {
+    try {
+      final model = await _datasource.updateDisplayName(name);
+      if (model == null) {
+        return left(const Failure.auth(message: 'No hay sesión activa'));
+      }
+      return right(_mapToEntity(model));
+    } catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.updateDisplayName', e, st);
       return left(Failure.auth(message: e.toString()));
     }
   }
