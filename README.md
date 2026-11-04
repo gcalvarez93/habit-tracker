@@ -101,6 +101,7 @@ feature/
 | [finance-tracker](https://github.com/gcalvarez93/finance-tracker) | Flutter (iOS + Android) | Dart |
 | [habit-tracker](https://github.com/gcalvarez93/habit-tracker) | Flutter (iOS + Android) | Dart |
 | [task-manager](https://github.com/gcalvarez93/task-manager) | iOS | Swift |
+| [task-manager-kmp](https://github.com/gcalvarez93/task-manager-kmp) | Android + iOS | Kotlin Multiplatform + Swift |
 | [budget-scanner](https://github.com/gcalvarez93/budget-scanner) | iOS | Swift |
 | [recipe-manager](https://github.com/gcalvarez93/recipe-manager) | Android | Kotlin |
 | [workout-tracker](https://github.com/gcalvarez93/workout-tracker) | Android | Kotlin |
@@ -203,6 +204,7 @@ App de seguimiento de hábitos desarrollada como parte del portfolio de CastroDe
 | [finance-tracker](https://github.com/gcalvarez93/finance-tracker) | Flutter (iOS + Android) | Dart |
 | [habit-tracker](https://github.com/gcalvarez93/habit-tracker) | Flutter (iOS + Android) | Dart |
 | [task-manager](https://github.com/gcalvarez93/task-manager) | iOS | Swift |
+| [task-manager-kmp](https://github.com/gcalvarez93/task-manager-kmp) | Android + iOS | Kotlin Multiplatform + Swift |
 | [budget-scanner](https://github.com/gcalvarez93/budget-scanner) | iOS | Swift |
 | [recipe-manager](https://github.com/gcalvarez93/recipe-manager) | Android | Kotlin |
 | [workout-tracker](https://github.com/gcalvarez93/workout-tracker) | Android | Kotlin |
