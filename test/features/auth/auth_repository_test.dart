@@ -1,4 +1,5 @@
 // Path: test/features/auth/auth_repository_test.dart
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:habit_tracker/core/errors/failures.dart';
 import 'package:habit_tracker/features/auth/data/models/user_model.dart';
@@ -31,8 +32,11 @@ void main() {
       expect(user.name, 'Eva');
     });
 
-    test('devuelve Failure.auth si el datasource lanza', () async {
-      datasource.error = Exception('credenciales inválidas');
+    test('devuelve Failure.auth con el mensaje de Firebase', () async {
+      datasource.error = FirebaseAuthException(
+        code: 'wrong-password',
+        message: 'credenciales inválidas',
+      );
 
       final result = await repository.loginWithEmail(
         email: 'x@y.com',
@@ -41,7 +45,54 @@ void main() {
 
       final failure = result.swap().getOrElse((_) => throw StateError('ok'));
       expect(failure, isA<AuthFailure>());
-      expect(failure.message, contains('credenciales inválidas'));
+      expect(failure.message, 'credenciales inválidas');
+    });
+
+    test('sin mensaje de Firebase usa el texto por defecto, nunca el código',
+            () async {
+          datasource.error = FirebaseAuthException(code: 'wrong-password');
+
+          final result = await repository.loginWithEmail(
+            email: 'x@y.com',
+            password: 'mal',
+          );
+
+          final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+          expect(failure, isA<AuthFailure>());
+          expect(failure.message, 'Error de autenticación');
+          expect(failure.message, isNot(contains('wrong-password')));
+        });
+
+    test('un error que no es de Firebase se convierte en Failure.unknown',
+            () async {
+          datasource.error = Exception('algo raro');
+
+          final result = await repository.loginWithEmail(
+            email: 'x@y.com',
+            password: 'mal',
+          );
+
+          final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+          expect(failure, isA<UnknownFailure>());
+        });
+  });
+
+  group('registerWithEmail', () {
+    test('devuelve Failure.auth con el mensaje de Firebase', () async {
+      datasource.error = FirebaseAuthException(
+        code: 'email-already-in-use',
+        message: 'el correo ya existe',
+      );
+
+      final result = await repository.registerWithEmail(
+        email: 'x@y.com',
+        password: '123456',
+        name: 'Eva',
+      );
+
+      final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+      expect(failure, isA<AuthFailure>());
+      expect(failure.message, 'el correo ya existe');
     });
   });
 
@@ -66,11 +117,15 @@ void main() {
     });
 
     test('devuelve Failure.auth si Firebase falla', () async {
-      datasource.error = Exception('network-request-failed');
+      datasource.error = FirebaseAuthException(
+        code: 'network-request-failed',
+        message: 'sin conexión',
+      );
 
       final result = await repository.updateDisplayName('Nuevo');
 
-      expect(result.isLeft(), isTrue);
+      final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+      expect(failure, isA<AuthFailure>());
     });
   });
 

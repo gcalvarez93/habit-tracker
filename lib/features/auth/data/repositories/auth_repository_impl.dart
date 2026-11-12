@@ -1,4 +1,5 @@
 // Path: lib/features/auth/data/repositories/auth_repository_impl.dart
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/logging/app_logger.dart';
@@ -23,9 +24,12 @@ class AuthRepositoryImpl implements IAuthRepository {
         password: password,
       );
       return right(_mapToEntity(model));
+    } on FirebaseAuthException catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.loginWithEmail', e, st);
+      return left(Failure.auth(message: e.message ?? 'Error de autenticación'));
     } catch (e, st) {
       AppLogger.error('AuthRepositoryImpl.loginWithEmail', e, st);
-      return left(Failure.auth(message: e.toString()));
+      return left(Failure.unknown(message: e.toString()));
     }
   }
 
@@ -42,9 +46,12 @@ class AuthRepositoryImpl implements IAuthRepository {
         name: name,
       );
       return right(_mapToEntity(model));
+    } on FirebaseAuthException catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.registerWithEmail', e, st);
+      return left(Failure.auth(message: e.message ?? 'Error de registro'));
     } catch (e, st) {
       AppLogger.error('AuthRepositoryImpl.registerWithEmail', e, st);
-      return left(Failure.auth(message: e.toString()));
+      return left(Failure.unknown(message: e.toString()));
     }
   }
 
@@ -53,9 +60,12 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       final model = await _datasource.loginWithGoogle();
       return right(_mapToEntity(model));
+    } on FirebaseAuthException catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.loginWithGoogle', e, st);
+      return left(Failure.auth(message: e.message ?? 'Error con Google'));
     } catch (e, st) {
       AppLogger.error('AuthRepositoryImpl.loginWithGoogle', e, st);
-      return left(Failure.auth(message: e.toString()));
+      return left(Failure.unknown(message: e.toString()));
     }
   }
 
@@ -64,9 +74,12 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       await _datasource.logout();
       return right(unit);
+    } on FirebaseAuthException catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.logout', e, st);
+      return left(Failure.auth(message: e.message ?? 'Error al cerrar sesión'));
     } catch (e, st) {
       AppLogger.error('AuthRepositoryImpl.logout', e, st);
-      return left(Failure.auth(message: e.toString()));
+      return left(Failure.unknown(message: e.toString()));
     }
   }
 
@@ -78,9 +91,12 @@ class AuthRepositoryImpl implements IAuthRepository {
         return left(const Failure.auth(message: 'No hay sesión activa'));
       }
       return right(_mapToEntity(model));
+    } on FirebaseAuthException catch (e, st) {
+      AppLogger.error('AuthRepositoryImpl.updateDisplayName', e, st);
+      return left(Failure.auth(message: e.message ?? 'Error al actualizar el nombre'));
     } catch (e, st) {
       AppLogger.error('AuthRepositoryImpl.updateDisplayName', e, st);
-      return left(Failure.auth(message: e.toString()));
+      return left(Failure.unknown(message: e.toString()));
     }
   }
 
