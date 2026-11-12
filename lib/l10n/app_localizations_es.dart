@@ -221,4 +221,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get selectIcon => 'Icono';
+
+  @override
+  String get errorNetwork => 'Sin conexión. Comprueba tu red e inténtalo de nuevo.';
+
+  @override
+  String get errorTimeout => 'El servidor tardó demasiado en responder. Inténtalo de nuevo.';
+
+  @override
+  String get errorServer => 'Hubo un problema en el servidor. Inténtalo de nuevo más tarde.';
+
+  @override
+  String get errorSession => 'Tu sesión no es válida. Vuelve a iniciar sesión.';
+
+  @override
+  String get errorNotFound => 'No se encontró lo que buscas. Puede que ya no exista.';
+
+  @override
+  String get errorRejected => 'Los datos no son válidos. Revísalos e inténtalo de nuevo.';
+
+  @override
+  String get errorUnknown => 'Ocurrió un error inesperado. Inténtalo de nuevo.';
+
+  @override
+  String get actionRetry => 'Reintentar';
 }

@@ -221,4 +221,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectIcon => 'Icon';
+
+  @override
+  String get errorNetwork => 'No connection. Check your network and try again.';
+
+  @override
+  String get errorTimeout => 'The server took too long to respond. Try again.';
+
+  @override
+  String get errorServer => 'There was a problem on the server. Try again later.';
+
+  @override
+  String get errorSession => 'Your session is no longer valid. Please sign in again.';
+
+  @override
+  String get errorNotFound => 'We couldn\'t find what you\'re looking for. It may no longer exist.';
+
+  @override
+  String get errorRejected => 'The data isn\'t valid. Check it and try again.';
+
+  @override
+  String get errorUnknown => 'An unexpected error occurred. Try again.';
+
+  @override
+  String get actionRetry => 'Retry';
 }

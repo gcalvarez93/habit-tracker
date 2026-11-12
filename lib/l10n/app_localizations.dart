@@ -514,6 +514,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Icon'**
   String get selectIcon;
+
+  /// No description provided for @errorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No connection. Check your network and try again.'**
+  String get errorNetwork;
+
+  /// No description provided for @errorTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The server took too long to respond. Try again.'**
+  String get errorTimeout;
+
+  /// No description provided for @errorServer.
+  ///
+  /// In en, this message translates to:
+  /// **'There was a problem on the server. Try again later.'**
+  String get errorServer;
+
+  /// No description provided for @errorSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session is no longer valid. Please sign in again.'**
+  String get errorSession;
+
+  /// No description provided for @errorNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find what you\'re looking for. It may no longer exist.'**
+  String get errorNotFound;
+
+  /// No description provided for @errorRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The data isn\'t valid. Check it and try again.'**
+  String get errorRejected;
+
+  /// No description provided for @errorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Try again.'**
+  String get errorUnknown;
+
+  /// No description provided for @actionRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get actionRetry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -541,9 +589,9 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-          'an issue with the localizations generation tool. Please file an issue '
-          'on GitHub with a reproducible sample app and the gen-l10n configuration '
-          'that was used.'
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
   );
 }

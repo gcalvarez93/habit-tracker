@@ -19,23 +19,25 @@ Failure _fromDio(DioException e) {
   final detail = '${e.type.name} ${e.requestOptions.method} '
       '${e.requestOptions.path}${status != null ? ' -> $status' : ''}';
 
-  switch (e.type) {
-    case DioExceptionType.connectionTimeout:
-    case DioExceptionType.sendTimeout:
-    case DioExceptionType.receiveTimeout:
-      return Failure.timeout(message: detail);
-    case DioExceptionType.connectionError:
-    case DioExceptionType.badCertificate:
-      return Failure.network(message: detail);
-    case DioExceptionType.badResponse:
-      return _fromStatus(status, detail);
-    case DioExceptionType.cancel:
-      return Failure.unknown(message: detail);
-    case DioExceptionType.unknown:
-      return e.error is SocketException
-          ? Failure.network(message: detail)
-          : Failure.unknown(message: '$detail (${e.error.runtimeType})');
+  // Se compara por tipo en lugar de un `switch` exhaustivo para no depender
+  // de los valores que añada cada versión de Dio (p. ej. `transformTimeout`).
+  final type = e.type;
+  if (type == DioExceptionType.connectionTimeout ||
+      type == DioExceptionType.sendTimeout ||
+      type == DioExceptionType.receiveTimeout) {
+    return Failure.timeout(message: detail);
   }
+  if (type == DioExceptionType.connectionError ||
+      type == DioExceptionType.badCertificate) {
+    return Failure.network(message: detail);
+  }
+  if (type == DioExceptionType.badResponse) {
+    return _fromStatus(status, detail);
+  }
+  if (type == DioExceptionType.unknown && e.error is SocketException) {
+    return Failure.network(message: detail);
+  }
+  return Failure.unknown(message: '$detail (${e.error.runtimeType})');
 }
 
 Failure _fromStatus(int? status, String detail) {
