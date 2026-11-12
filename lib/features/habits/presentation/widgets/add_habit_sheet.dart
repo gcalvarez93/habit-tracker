@@ -1,6 +1,8 @@
 // Path: lib/features/habits/presentation/widgets/add_habit_sheet.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/errors/failure_messages.dart';
+import '../../../../core/errors/failures.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../providers/habit_provider.dart';
 
@@ -17,6 +19,8 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
   String _selectedFrequency = 'daily';
   String _selectedIcon = '⭐';
   String _selectedColor = '#7C3AED';
+  bool _isSaving = false;
+  Failure? _saveFailure;
 
   final List<String> _icons = [
     '⭐', '💪', '📚', '🏃', '🧘', '💧',
@@ -185,9 +189,26 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
               }).toList(),
             ),
             const SizedBox(height: 24),
+            if (_saveFailure != null) ...[
+              Text(
+                _saveFailure!.userMessage(l10n),
+                key: const Key('save_error'),
+                style: const TextStyle(color: Colors.red),
+              ),
+              const SizedBox(height: 16),
+            ],
             ElevatedButton(
-              onPressed: () async {
+              onPressed: _isSaving
+                  ? null
+                  : () async {
                 if (_nameController.text.trim().isEmpty) return;
+                final messenger = ScaffoldMessenger.of(context);
+                setState(() {
+                  _isSaving = true;
+                  _saveFailure = null;
+                });
+
+                final failure =
                 await ref.read(habitProvider.notifier).createHabit(
                   name: _nameController.text.trim(),
                   description: _descriptionController.text.trim(),
@@ -195,15 +216,25 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                   icon: _selectedIcon,
                   color: _selectedColor,
                 );
-                if (context.mounted) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(l10n.habitCreatedSuccess),
-                      backgroundColor: colorScheme.primary,
-                    ),
-                  );
+
+                if (!context.mounted) return;
+
+                // Si falla, la hoja sigue abierta y conserva lo escrito.
+                if (failure != null) {
+                  setState(() {
+                    _isSaving = false;
+                    _saveFailure = failure;
+                  });
+                  return;
                 }
+
+                Navigator.pop(context);
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text(l10n.habitCreatedSuccess),
+                    backgroundColor: colorScheme.primary,
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: colorScheme.primary,
@@ -212,7 +243,16 @@ class _AddHabitSheetState extends ConsumerState<AddHabitSheet> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
               ),
-              child: Text(l10n.save, style: const TextStyle(fontSize: 16)),
+              child: _isSaving
+                  ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
+                  : Text(l10n.save, style: const TextStyle(fontSize: 16)),
             ),
           ],
         ),

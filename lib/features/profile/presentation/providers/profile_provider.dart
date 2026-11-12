@@ -1,5 +1,6 @@
 // Path: lib/features/profile/presentation/providers/profile_provider.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/errors/failures.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../data/datasources/profile_remote_datasource.dart';
 import '../../data/repositories/profile_repository_impl.dart';
@@ -32,8 +33,8 @@ class ProfileLoaded extends ProfileState {
   ProfileLoaded(this.profile);
 }
 class ProfileError extends ProfileState {
-  final String message;
-  ProfileError(this.message);
+  final Failure failure;
+  ProfileError(this.failure);
 }
 
 class ProfileNotifier extends StateNotifier<ProfileState> {
@@ -53,7 +54,7 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     state = ProfileLoading();
     final result = await _getProfile();
     result.fold(
-          (failure) => state = ProfileError(failure.message),
+          (failure) => state = ProfileError(failure),
           (profile) => state = ProfileLoaded(profile),
     );
   }

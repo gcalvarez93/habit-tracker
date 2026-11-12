@@ -30,14 +30,14 @@ void main() {
     expect((state as ProfileLoaded).profile.name, 'Ana');
   });
 
-  test('pasa a error con el mensaje del fallo si no carga', () async {
+  test('pasa a error con el Failure si no carga', () async {
     repository.getResult = left(const Failure.server(message: 'boom'));
 
     final notifier = await buildNotifier();
 
     final state = notifier.state;
     expect(state, isA<ProfileError>());
-    expect((state as ProfileError).message, 'boom');
+    expect((state as ProfileError).failure, const Failure.server(message: 'boom'));
   });
 
   group('updateProfile', () {

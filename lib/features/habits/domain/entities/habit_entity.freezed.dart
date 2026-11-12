@@ -28,9 +28,7 @@ mixin _$HabitEntity {
   bool get completedToday => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
-  /// Create a copy of HabitEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $HabitEntityCopyWith<HabitEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -65,8 +63,6 @@ class _$HabitEntityCopyWithImpl<$Res, $Val extends HabitEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HabitEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,8 +157,6 @@ class __$$HabitEntityImplCopyWithImpl<$Res>
       _$HabitEntityImpl _value, $Res Function(_$HabitEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of HabitEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -310,9 +304,7 @@ class _$HabitEntityImpl implements _HabitEntity {
       completedToday,
       createdAt);
 
-  /// Create a copy of HabitEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$HabitEntityImplCopyWith<_$HabitEntityImpl> get copyWith =>
@@ -355,11 +347,8 @@ abstract class _HabitEntity implements HabitEntity {
   bool get completedToday;
   @override
   DateTime get createdAt;
-
-  /// Create a copy of HabitEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$HabitEntityImplCopyWith<_$HabitEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

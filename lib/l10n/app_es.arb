@@ -273,5 +273,37 @@
   "faq4Answer": "Sí, todos los datos se almacenan de forma segura en Firebase.",
   "@faq4Answer": {
     "description": "FAQ 4 respuesta"
+  },
+  "errorNetwork": "Sin conexión. Comprueba tu red e inténtalo de nuevo.",
+  "@errorNetwork": {
+    "description": "Error de red"
+  },
+  "errorTimeout": "El servidor tardó demasiado en responder. Inténtalo de nuevo.",
+  "@errorTimeout": {
+    "description": "Tiempo de espera agotado"
+  },
+  "errorServer": "Hubo un problema en el servidor. Inténtalo de nuevo más tarde.",
+  "@errorServer": {
+    "description": "Error del servidor"
+  },
+  "errorSession": "Tu sesión no es válida. Vuelve a iniciar sesión.",
+  "@errorSession": {
+    "description": "Sesión no válida o sin permisos"
+  },
+  "errorNotFound": "No se encontró lo que buscas. Puede que ya no exista.",
+  "@errorNotFound": {
+    "description": "Recurso no encontrado"
+  },
+  "errorRejected": "Los datos no son válidos. Revísalos e inténtalo de nuevo.",
+  "@errorRejected": {
+    "description": "Datos rechazados por el servidor"
+  },
+  "errorUnknown": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+  "@errorUnknown": {
+    "description": "Error desconocido"
+  },
+  "actionRetry": "Reintentar",
+  "@actionRetry": {
+    "description": "Botón reintentar"
   }
 }

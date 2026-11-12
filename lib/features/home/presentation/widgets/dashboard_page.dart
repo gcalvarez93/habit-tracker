@@ -1,11 +1,14 @@
 // Path: lib/features/home/presentation/widgets/dashboard_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/errors/failure_messages.dart';
+import '../../../../core/widgets/error_retry_view.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../habits/domain/entities/habit_entity.dart';
 import '../../../habits/presentation/providers/habit_provider.dart';
 import '../../../habits/presentation/widgets/habit_card.dart';
+import '../../../habits/presentation/widgets/habit_failure_listener.dart';
 import '../../../habits/presentation/widgets/habit_stats_card.dart';
 import '../../../home/presentation/pages/home_page.dart';
 
@@ -17,6 +20,7 @@ class DashboardPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final authState = ref.watch(authProvider);
     final habitState = ref.watch(habitProvider);
+    listenToHabitActionFailures(context, ref, l10n);
     final colorScheme = Theme.of(context).colorScheme;
 
     final userName = authState is AuthAuthenticated
@@ -140,21 +144,28 @@ class DashboardPage extends ConsumerWidget {
                 const SizedBox(height: 16),
                 if (habitState is HabitLoading)
                   const Center(child: CircularProgressIndicator())
-                else if (habits.isEmpty)
-                  Center(
-                    child: Text(
-                      l10n.noHabits,
-                      style: TextStyle(color: colorScheme.onSurface.withValues(alpha: 0.5)),
-                    ),
+                else if (habitState is HabitError)
+                  ErrorRetryView(
+                    message: habitState.failure.userMessage(l10n),
+                    retryLabel: l10n.actionRetry,
+                    onRetry: () =>
+                        ref.read(habitProvider.notifier).loadHabits(),
                   )
-                else
-                  ...habits.take(3).map((h) => HabitCard(
-                    habit: h,
-                    onComplete: () =>
-                        ref.read(habitProvider.notifier).completeHabit(h.id),
-                    onDelete: () =>
-                        ref.read(habitProvider.notifier).deleteHabit(h.id),
-                  )),
+                else if (habits.isEmpty)
+                    Center(
+                      child: Text(
+                        l10n.noHabits,
+                        style: TextStyle(color: colorScheme.onSurface.withValues(alpha: 0.5)),
+                      ),
+                    )
+                  else
+                    ...habits.take(3).map((h) => HabitCard(
+                      habit: h,
+                      onComplete: () =>
+                          ref.read(habitProvider.notifier).completeHabit(h.id),
+                      onDelete: () =>
+                          ref.read(habitProvider.notifier).deleteHabit(h.id),
+                    )),
               ],
             ),
           ),

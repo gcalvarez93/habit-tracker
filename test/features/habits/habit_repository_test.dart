@@ -1,4 +1,5 @@
 // Path: test/features/habits/habit_repository_test.dart
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:habit_tracker/core/errors/failures.dart';
 import 'package:habit_tracker/features/habits/data/repositories/habit_repository_impl.dart';
@@ -22,15 +23,41 @@ void main() {
     expect(result.getOrElse((_) => throw StateError('fallo')), [testHabit]);
   });
 
-  test('getHabits devuelve Failure.server si falla la red', () async {
-    datasource.error = Exception('sin red');
+  test('getHabits devuelve Failure.network si no hay conexión', () async {
+    datasource.error = DioException(
+      requestOptions: RequestOptions(path: '/habits'),
+      type: DioExceptionType.connectionError,
+    );
+
+    final result = await repository.getHabits();
+
+    final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+    expect(failure, isA<NetworkFailure>());
+  });
+
+  test('getHabits devuelve Failure.server ante un 500', () async {
+    final options = RequestOptions(path: '/habits');
+    datasource.error = DioException(
+      requestOptions: options,
+      type: DioExceptionType.badResponse,
+      response: Response(requestOptions: options, statusCode: 500),
+    );
 
     final result = await repository.getHabits();
 
     final failure = result.swap().getOrElse((_) => throw StateError('ok'));
     expect(failure, isA<ServerFailure>());
-    expect(failure.message, contains('sin red'));
   });
+
+  test('getHabits devuelve Failure.unknown ante una excepción ajena a Dio',
+          () async {
+        datasource.error = Exception('inesperado');
+
+        final result = await repository.getHabits();
+
+        final failure = result.swap().getOrElse((_) => throw StateError('ok'));
+        expect(failure, isA<UnknownFailure>());
+      });
 
   test('createHabit devuelve el hábito creado como entidad', () async {
     final result = await repository.createHabit(

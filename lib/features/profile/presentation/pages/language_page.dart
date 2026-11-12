@@ -20,17 +20,31 @@ class LanguagePage extends ConsumerWidget {
         : currentLocale.languageCode;
 
     Future<void> changeLanguage(String language) async {
+      final messenger = ScaffoldMessenger.of(context);
+
       // Primero actualiza el locale inmediatamente
       ref.read(localeProvider.notifier).state = Locale(language);
 
       // Luego guarda en la API sin esperar
       if (profileState is ProfileLoaded) {
         final p = profileState.profile;
-        ref.read(profileProvider.notifier).updateProfile(
+        ref
+            .read(profileProvider.notifier)
+            .updateProfile(
           name: p.name,
           language: language,
           notifications: p.notifications,
-        );
+        )
+            .then((saved) {
+          if (!saved) {
+            messenger.showSnackBar(
+              SnackBar(
+                content: Text(l10n.profileUpdateError),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        });
       }
 
       if (context.mounted) Navigator.pop(context);

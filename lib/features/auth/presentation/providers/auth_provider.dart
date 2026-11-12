@@ -151,6 +151,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
     network: (message) => message,
     server: (message) => message,
     auth: (message) => message,
+    timeout: (_) => 'Error desconocido',
+    notFound: (_) => 'Error desconocido',
+    rejected: (_) => 'Error desconocido',
     unknown: (message) => 'Error desconocido',
   );
 }

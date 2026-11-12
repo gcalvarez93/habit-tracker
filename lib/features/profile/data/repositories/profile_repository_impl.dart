@@ -2,6 +2,7 @@
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/logging/app_logger.dart';
+import '../../../../core/network/dio_failure_mapper.dart';
 import '../../domain/entities/profile_entity.dart';
 import '../../domain/repositories/i_profile_repository.dart';
 import '../datasources/profile_remote_datasource.dart';
@@ -18,7 +19,7 @@ class ProfileRepositoryImpl implements IProfileRepository {
       return right(model.toEntity());
     } catch (e, st) {
       AppLogger.error('ProfileRepositoryImpl.getProfile', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 
@@ -37,7 +38,7 @@ class ProfileRepositoryImpl implements IProfileRepository {
       return right(model.toEntity());
     } catch (e, st) {
       AppLogger.error('ProfileRepositoryImpl.updateProfile', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 }

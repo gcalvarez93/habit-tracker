@@ -2,6 +2,7 @@
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/logging/app_logger.dart';
+import '../../../../core/network/dio_failure_mapper.dart';
 import '../../domain/entities/habit_entity.dart';
 import '../../domain/repositories/i_habit_repository.dart';
 import '../datasources/habit_remote_datasource.dart';
@@ -19,7 +20,7 @@ class HabitRepositoryImpl implements IHabitRepository {
       return right(models.map(_mapToEntity).toList());
     } catch (e, st) {
       AppLogger.error('HabitRepositoryImpl.getHabits', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 
@@ -42,7 +43,7 @@ class HabitRepositoryImpl implements IHabitRepository {
       return right(_mapToEntity(model));
     } catch (e, st) {
       AppLogger.error('HabitRepositoryImpl.createHabit', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 
@@ -53,7 +54,7 @@ class HabitRepositoryImpl implements IHabitRepository {
       return right(_mapToEntity(model));
     } catch (e, st) {
       AppLogger.error('HabitRepositoryImpl.completeHabit', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 
@@ -64,7 +65,7 @@ class HabitRepositoryImpl implements IHabitRepository {
       return right(unit);
     } catch (e, st) {
       AppLogger.error('HabitRepositoryImpl.deleteHabit', e, st);
-      return left(Failure.server(message: e.toString()));
+      return left(mapToFailure(e));
     }
   }
 
