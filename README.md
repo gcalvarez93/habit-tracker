@@ -90,7 +90,7 @@ feature/
 - **Riverpod with `StateNotifier` and sealed states.** Each screen state (`Loading`, `Loaded`, `Error`) is an explicit type, so the UI cannot read data that is not there. The providers are the single place where concrete implementations are wired, which also makes them easy to replace in tests.
 - **`Either<Failure, T>` instead of exceptions.** Repositories catch infrastructure errors, log them with `AppLogger` and return a `Failure`. The notifiers and pages only fold the result.
 - **Typed failures, one mapper.** `mapToFailure` is the single place that turns a `DioException` into a `Failure` (`network`, `timeout`, `server`, `auth`, `notFound`, `rejected`, `unknown`). It compares exception types instead of using an exhaustive `switch`, so it does not break when a Dio version adds a new type. The failure `message` is for logs only and never includes the response body.
-- **Localized, human error messages.** The UI never shows raw exception text: `failure.userMessage(l10n)` picks a translated message (English and Spanish) per failure type.
+- **Localized, human error messages.** The UI never shows raw exception text (authentication shows Firebase's own message, see Known limitations): `failure.userMessage(l10n)` picks a translated message (English and Spanish) per failure type.
 - **A failed reload does not wipe the screen.** If habits are already on screen and a refresh fails, the list stays and the error shows as a SnackBar (`actionFailure`). The full-screen error with a retry button appears only when there is nothing to show. Every habits screen also supports pull-to-refresh.
 - **Actions report their own result.** Creating a habit returns the `Failure` to the form, which stays open with the input kept and an inline error. Deleting is optimistic and rolls back with a message if the API fails.
 - **Freezed for entities and failures.** Immutable values with equality for free, and a sealed `Failure` that forces exhaustive handling.
@@ -122,8 +122,9 @@ Deliberate trade-offs of a portfolio project, listed so they are not a surprise:
 - **No `sendTimeout`.** Only connection and receive timeouts are configured on the Dio client.
 - **Completing a habit is not optimistic.** It waits for the API and then reloads, so on a slow network the check takes a moment to show. If it fails, the list is kept and a message is shown.
 - **Test coverage is focused.** Notifiers, repositories, the failure mapper and the profile flow are covered; there are no widget or integration tests, so the visual side of the error states was checked by hand.
-- **Authentication errors come from Firebase.** Login and registration show their own messages; timeouts or unexpected failures there fall back to a generic "unknown error".
+- **Authentication errors are not localized.** Login and registration show the message Firebase returns (in English, never the error code). Any other failure falls back to a fixed Spanish text ("Error desconocido"), hardcoded rather than taken from the ARB files, because the auth state stores a `String` instead of the `Failure`.
 - **Some text is still hardcoded.** For example the default display name "Usuario" is not localized.
+- **The error core is copied, not shared.** `mapToFailure`, `Failure`, the user messages and `ErrorRetryView` also exist in finance-tracker; there is no shared package, so a change has to be applied in both.
 - **Pinned code-generation tooling.** `build_runner`, `freezed` and `json_serializable` are pinned to exact versions in `pubspec.yaml` because newer analyzer versions failed to run with the current Dart SDK. Update them together.
 
 ---
@@ -211,7 +212,7 @@ App de seguimiento de hábitos desarrollada como parte del portfolio de CastroDe
 - **Riverpod con `StateNotifier` y estados sellados.** Cada estado de pantalla (`Loading`, `Loaded`, `Error`) es un tipo explícito, y la UI no puede leer datos que no existen. Los providers son el único sitio donde se enlazan las implementaciones concretas, lo que también facilita sustituirlas en los tests.
 - **`Either<Failure, T>` en lugar de excepciones.** Los repositorios capturan los errores de infraestructura, los registran con `AppLogger` y devuelven un `Failure`. Los notifiers y las páginas solo procesan el resultado.
 - **Fallos tipados, un solo mapper.** `mapToFailure` es el único sitio que convierte una `DioException` en un `Failure` (`network`, `timeout`, `server`, `auth`, `notFound`, `rejected`, `unknown`). Compara tipos de excepción en lugar de usar un `switch` exhaustivo, así que no se rompe cuando una versión de Dio añade un tipo nuevo. El `message` del fallo es solo para logs y nunca incluye el cuerpo de la respuesta.
-- **Mensajes de error localizados y comprensibles.** La UI nunca muestra el texto crudo de una excepción: `failure.userMessage(l10n)` elige un mensaje traducido (español e inglés) según el tipo de fallo.
+- **Mensajes de error localizados y comprensibles.** La UI nunca muestra el texto crudo de una excepción (la autenticación muestra el mensaje propio de Firebase, ver Limitaciones conocidas): `failure.userMessage(l10n)` elige un mensaje traducido (español e inglés) según el tipo de fallo.
 - **Una recarga fallida no vacía la pantalla.** Si ya hay hábitos en pantalla y falla una recarga, la lista se mantiene y el error aparece como SnackBar (`actionFailure`). El error a pantalla completa con botón de reintento solo aparece cuando no hay nada que mostrar. Todas las pantallas de hábitos admiten también arrastrar para recargar.
 - **Cada acción informa de su resultado.** Crear un hábito devuelve el `Failure` al formulario, que sigue abierto con lo escrito y un error en línea. Borrar es optimista y se revierte con un mensaje si la API falla.
 - **Freezed para entidades y fallos.** Valores inmutables con igualdad gratis y un `Failure` sellado que obliga a tratar todos los casos.
@@ -243,8 +244,9 @@ Decisiones asumidas en un proyecto de portfolio, indicadas para que no sorprenda
 - **Sin `sendTimeout`.** Solo hay timeouts de conexión y de recepción en el cliente Dio.
 - **Completar un hábito no es optimista.** Espera a la API y recarga, así que con red lenta el check tarda un momento en verse. Si falla, se mantiene la lista y se muestra un mensaje.
 - **Cobertura de tests acotada.** Están cubiertos los notifiers, los repositorios, el mapper de fallos y el flujo de perfil; no hay tests de widgets ni de integración, así que la parte visual de los estados de error se comprobó a mano.
-- **Los errores de autenticación vienen de Firebase.** Login y registro muestran sus propios mensajes; los timeouts o fallos inesperados caen en un "error desconocido" genérico.
+- **Los errores de autenticación no están localizados.** Login y registro muestran el mensaje que devuelve Firebase (en inglés, nunca el código de error). Cualquier otro fallo cae en un texto fijo en español ("Error desconocido"), escrito en el código y no en los ARB, porque el estado de auth guarda un `String` en lugar del `Failure`.
 - **Queda algo de texto fijo.** Por ejemplo, el nombre por defecto "Usuario" no está localizado.
+- **El núcleo de errores está copiado, no compartido.** `mapToFailure`, `Failure`, los mensajes de usuario y `ErrorRetryView` existen también en finance-tracker; no hay un paquete común, así que un cambio hay que aplicarlo en los dos.
 - **Herramientas de generación de código fijadas.** `build_runner`, `freezed` y `json_serializable` están fijados a versiones exactas en `pubspec.yaml` porque las versiones nuevas del analyzer no funcionaban con el SDK de Dart actual. Actualízalas juntas.
 
 ---
